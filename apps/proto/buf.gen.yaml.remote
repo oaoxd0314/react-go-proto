@@ -1,0 +1,19 @@
+# 遠端版本 - 依賴 buf.build 線上插件
+# 注意：在 CI/CD 環境可能遇到 rate limiting (429 錯誤)
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/go:v1.32.0
+    out: ../backend-go/gen
+    opt: paths=source_relative
+  - remote: buf.build/connectrpc/go:v1.18.1
+    out: ../backend-go/gen
+    opt: paths=source_relative
+  - remote: buf.build/bufbuild/es:v2.5.0
+    out: ../frontend-ts/src/gen
+    opt:
+      - target=ts
+  - remote: buf.build/connectrpc/query-es:v2.1.0
+    out: ../frontend-ts/src/gen
+    opt:
+      - target=ts
+      - import_extension=none 

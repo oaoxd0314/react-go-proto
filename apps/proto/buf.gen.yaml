@@ -1,16 +1,24 @@
+# 離線版本 - 使用本地安裝的插件
 version: v2
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.32.0
+  # Go protobuf 生成
+  - local: protoc-gen-go
     out: ../backend-go/gen
     opt: paths=source_relative
-  - remote: buf.build/connectrpc/go:v1.18.1
+  
+  # Go Connect-RPC 生成
+  - local: protoc-gen-connect-go
     out: ../backend-go/gen
     opt: paths=source_relative
-  - remote: buf.build/bufbuild/es:v2.5.0
+  
+  # TypeScript protobuf 生成
+  - local: protoc-gen-es
     out: ../frontend-ts/src/gen
     opt:
       - target=ts
-  - remote: buf.build/connectrpc/query-es:v2.1.0
+  
+  # TypeScript Connect-Query 生成
+  - local: protoc-gen-connect-query
     out: ../frontend-ts/src/gen
     opt:
       - target=ts
