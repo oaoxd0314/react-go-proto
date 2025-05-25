@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useUserQuery } from './query/user';
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import './index.css'
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,8 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
-import './index.css'
 
 function App() {
   const [userId, setUserId] = useState('');
@@ -24,48 +22,48 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 p-4 flex items-center justify-center antialiased">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-background">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl">User Lookup</CardTitle>
+          <CardTitle>User Lookup</CardTitle>
           <CardDescription>Enter a user ID to fetch their details.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Input
-                type="text"
-                value={inputId}
-                onChange={(e) => setInputId(e.target.value)}
-                placeholder="Enter user ID"
-                className="h-10"
-              />
-            </div>
+            <input
+              type="text"
+              value={inputId}
+              onChange={(e) => setInputId(e.target.value)}
+              placeholder="Enter user ID"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            />
             <Button type="submit" className="w-full">
               {isLoading ? "Loading..." : "Look up User"}
             </Button>
           </form>
-
+          
           {error && (
-            <div className="mt-4 p-4 rounded-lg bg-red-50 text-red-500 text-sm">
+            <div className="mt-4 p-4 rounded-lg bg-destructive/15 text-destructive text-sm">
               {error instanceof Error ? error.message : 'An error occurred'}
             </div>
           )}
 
           {user && (
-            <div className="mt-6 space-y-1">
-              <h3 className="font-medium leading-none">User Details</h3>
-              <div className="text-sm text-muted-foreground">
-                Found user information for ID: {user.user?.id}
+            <div className="mt-6 space-y-3">
+              <div>
+                <h3 className="font-medium">User Details</h3>
+                <p className="text-sm text-muted-foreground">
+                  Found user information for ID: {user.user?.id}
+                </p>
               </div>
-              <div className="mt-4 space-y-3">
-                <div className="flex items-center">
-                  <div className="w-16 text-sm font-medium">Name</div>
-                  <div className="text-sm text-muted-foreground">{user.user?.name}</div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Name</span>
+                  <span className="text-sm text-muted-foreground">{user.user?.name}</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-16 text-sm font-medium">Email</div>
-                  <div className="text-sm text-muted-foreground">{user.user?.email}</div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium">Email</span>
+                  <span className="text-sm text-muted-foreground">{user.user?.email}</span>
                 </div>
               </div>
             </div>

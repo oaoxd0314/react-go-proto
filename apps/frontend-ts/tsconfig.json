@@ -26,7 +26,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
   },
   "include": [
     "src"
@@ -35,5 +35,5 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
 }
